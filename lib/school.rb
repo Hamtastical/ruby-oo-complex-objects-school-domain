@@ -3,33 +3,30 @@
 require "pry"
 
 class School
-    attr_accessor :name, :grade
-    def initialize(roster)
-        @roster = roster
+    attr_accessor :name, :roster
+    def initialize(name) #initiate the name of the SCHOOL caus eunder SCHOOL CLASS
+        @roster = {} #make the roster an empty hash/variable
     end
 
-    def roster
-        @roster = {}
-    end
-
-    def add_student(name, grade) #add students method by name and grade
-
-        if @roster[@grade] #FROM README: If the roster has a grade key
-            @roster[@grade] << @name #then we can push the name into the array
-
-        else 
-            @roster[grade] = [] #ELSE, it become an empty array if the grade key already exists
-            @roster[grade] << @name #it will erase it's contents and add the name???
-        end 
+    def add_student(s_name, grade) #add students method by name and grade
+        #binding.pry
+         roster[grade] ||= [] #FROM README: If the roster has a grade key (if it does not, then it is an empty array, this is achieved through the || =)
+         roster[grade] << s_name  #then we can push the name into the array
 
     end
 
-    def grade (grade)
-        @roster[@grade]
+    def grade(grade) #call the grade through argument
+        roster[grade] #calls the roster by grade
+        #binding.pry
     end
 
-    def sort 
-        @roster.sort
+    def sort  
+     roster.each do |key,value| #iterate throught the values of the roster(students)
+        #binding.pry
+        value.sort! #.sort! forces modified array, to sort the student alphabetically
+
+     end
+     #binding.pry
     end
 end
 #The Pseudo part
